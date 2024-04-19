@@ -169,6 +169,12 @@ stream {
     access_log {* stream.access_log *} main buffer=16384 flush=3;
     {% end %}
 
+    {% if stream.real_ip_from then %}
+    {% for _, real_ip in ipairs(stream.real_ip_from) do %}
+    set_real_ip_from {*real_ip*};
+    {% end %}
+    {% end %}
+
     # stream configuration snippet starts
     {% if stream_configuration_snippet then %}
     {* stream_configuration_snippet *}
