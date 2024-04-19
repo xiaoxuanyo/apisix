@@ -83,7 +83,7 @@ function install_dependencies_with_apt() {
 
 # Identify the different distributions and call the corresponding function
 function multi_distro_installation() {
-    if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release || grep -Eq "centos" /etc/*-release; then
+    if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
         install_dependencies_with_yum "centos"
     elif grep -Eqi -e "Red Hat" -e "rhel" /etc/*-release; then
         install_dependencies_with_yum "rhel"
