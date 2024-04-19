@@ -46,6 +46,8 @@ function install_dependencies_with_aur() {
 function install_dependencies_with_yum() {
     sudo yum install -y yum-utils
     sudo yum-config-manager --add-repo "https://openresty.org/package/${1}/openresty.repo"
+    # 将/etc/yum.repos.d/openresty.repo中的$releasever替换为8
+    sed -i "s/\$releasever/8/g" /etc/yum.repos.d/openresty.repo
     if [[ "${1}" == "centos" ]]; then
         sudo yum -y install centos-release-scl
         sudo yum -y install devtoolset-9 patch wget
