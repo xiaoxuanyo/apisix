@@ -126,7 +126,7 @@ help:
 ### deps : Installing dependencies
 .PHONY: deps
 deps: install-runtime
-deps:
+# deps:
 	$(eval ENV_LUAROCKS_VER := $(shell $(ENV_LUAROCKS) --version | grep -E -o "luarocks [0-9]+."))
 	@if [ '$(ENV_LUAROCKS_VER)' = 'luarocks 3.' ]; then \
 		mkdir -p ~/.luarocks; \
@@ -141,8 +141,8 @@ deps:
 
 ### undeps : Uninstalling dependencies
 .PHONY: undeps
-# undeps: uninstall-runtime
-undeps:
+undeps: uninstall-runtime
+# undeps:
 	@$(call func_echo_status, "$@ -> [ Start ]")
 	$(ENV_LUAROCKS) purge --tree=deps
 	@$(call func_echo_success_status, "$@ -> [ Done ]")
